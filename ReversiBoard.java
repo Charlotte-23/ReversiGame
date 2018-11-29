@@ -28,6 +28,9 @@ public class ReversiBoard {
     private int playerIdA;
     private int playerIdB;
     private int winnerId;
+
+    private int diskCountA;
+    private int diskCountB;
     
     /**
      * the constructor that initializes a valid game board of size n
@@ -48,6 +51,7 @@ public class ReversiBoard {
         }
         this.playerIdA = playerIdA;
         this.playerIdB = playerIdB;
+        // TODO: implement code to randomly choose who go first
         currentPlayerId = playerIdA;
     }
 
@@ -81,6 +85,24 @@ public class ReversiBoard {
             System.out.print( "   " + (char)('a' + i) );
         }
         System.out.println();
+    }
+
+    public int getCurrentPlayer() {
+        gotoNextPlayer();
+        return currentPlayerId;
+    }
+
+    private void gotoNextPlayer() {
+        currentPlayerId = ( currentPlayerId == playerIdA ) ? playerIdB : playerIdA;
+    }
+
+    private boolean isBoardFull() {
+        // TODO:
+        return false;
+    }
+
+    private void updateDiskCounts() {
+        // TODO:
     }
 
     /**
