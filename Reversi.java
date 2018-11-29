@@ -20,10 +20,10 @@ public class Reversi {
 
     //This method ask the user which letter to choose and return the corresponding letter,
     //will keep asking unless typing in "X" or "O".
-    public static String inPutPlayerLetter() {
+    public static String inputPlayerLetter() {
         char letter = 0;
         while ((letter != 'X') && (letter != 'O')) {
-            System.out.println("Do you wan to be X or O?");
+            System.out.println("Do you want to be X or O?");
             Scanner keyboard = new Scanner(System.in);
             letter = keyboard.next().charAt(0);
             letter = Character.toUpperCase(letter);
@@ -78,7 +78,7 @@ public class Reversi {
         board[4][5] = "X";
         board[5][4] = "X";
 
-        String playerLetter = inPutPlayerLetter();
+        String playerLetter = inputPlayerLetter();
         String computerLetter = "";
 
         if (playerLetter.equals("X")) {
