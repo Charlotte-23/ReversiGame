@@ -96,6 +96,7 @@ public class ReversiBoard {
 
     public boolean isOver() {
         //TODO: check if the game is finished and update the winner
+        return false;
     }
 
     public int winner() {
@@ -171,7 +172,7 @@ public class ReversiBoard {
      * @param args - the arguments passed in
      */
     public static void main( String[] args ) {
-        ReversiBoard testBoard = new ReversiBoard(8);
+        ReversiBoard testBoard = new ReversiBoard(12, 1, 2);
         testBoard.drawBoard();
     }
 }
