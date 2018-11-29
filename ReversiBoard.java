@@ -57,12 +57,9 @@ public class ReversiBoard {
      * Board position (i, j), i is the # of row (numeric) and j is the # of column (alphabetic)
      */
     public void drawBoard() {
-        //   ┌───┬───┬───┬───┬───┬───┬───┬───┐
         System.out.println( "  " + TABLE_LU 
                                  + repeat( ( "" + repeat( TABLE_H, 3 ) + TABLE_UD ), size-1 ) 
                                  + repeat( TABLE_H, 3 ) + TABLE_RU );
-        //  1│   │   │   │   │   │   │   │   │
-        //   ├───┼───┼───┼───┼───┼───┼───┼───┤
         for ( int i = 1; i <= size; i++ ) {
             System.out.printf( "%2d%c", i, TABLE_V );
             for ( int j = 1; j <= size; j++ ) {
@@ -79,8 +76,6 @@ public class ReversiBoard {
                                          + repeat( TABLE_H, 3 ) + TABLE_RD );
             }
         }
-        //   └───┴───┴───┴───┴───┴───┴───┴───┘
-        //     a   b   c   d   e   f   g   h
         System.out.print(' ');
         for ( int i = 0; i < size; i++ ) {
             System.out.print( "   " + (char)('a' + i) );
