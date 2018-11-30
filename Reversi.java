@@ -2,6 +2,11 @@ import java.util.Scanner;
 
 public class Reversi {
 
+    //enum command set
+    enum COMMAND {
+        addplayer, addcomputerplayer, removeplayer, editplayer, resetstats,
+        displayplayer, rankings, startgame, exit, nosuchcommand };
+    
     //This method ask the user which letter to choose and return the corresponding letter,
     //will keep asking unless typing in "X" or "O".
     public static String inputPlayerLetter() {
@@ -15,33 +20,101 @@ public class Reversi {
         return Character.toString(letter);
     }
 
-    public static void main(String[] args) {
+    /**
+     * A command parser parses from a parameter list
+     * @param para - String to be parsed
+     * @return COMMAND enum
+     */
+    public static COMMAND parseCommand( String[] para ) {
+        COMMAND command = COMMAND.nosuchcommand;
+        try {
+            command = COMMAND.valueOf( para[INITIAL_FLAG] );
+        }
+        catch (IllegalArgumentException e) {
+            System.out.printf( "'%s' is not a valid command.\n", para[INITIAL_FLAG] );
+        }
+        return command;
+    }
 
-        System.out.println("Welcome to Reversi!");
+    public static void main( String[] args ) {
 
-        String[][] board = new String[9][9];
-
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                board[i][j] = " ";
+        Scanner keyboard = new Scanner( System.in );
+        System.out.println( "Welcome to Reversi!" );
+        
+        //find players.dat
+        File dataFile = new File( "players.dat" );
+        //if not exists, create one
+        if ( !dataFile.exists() ) {
+            try {
+                dataFile.createNewFile();
+            } catch ( IOException e ) {
+                System.err.println( e.getMessage() );
             }
         }
+        //create a corresponding data-storage object to store all players.
+        ReversiPlayerManager manager = new ReversiPlayerManager( dataFile );
 
-        board[4][4] = "O";
-        board[5][5] = "O";
-        board[4][5] = "X";
-        board[5][4] = "X";
+        while ( true ) {
+            System.out.print( "\n$" );
+            String para[] = keyboard.nextLine().split( DELIMS );
+            COMMAND command = parseCommand( para );
+            
+            try {
+                switch ( command ) {
 
-        String playerLetter = inputPlayerLetter();
-        String computerLetter = "";
+                    case addplayer:
+                        manager.addPlayer( para );
+                        break;
 
-        if (playerLetter.equals("X")) {
-            computerLetter = "O";
-        } else {
-            computerLetter = "X";
+                    case addaiplayer:
+                        manager.addComputerPlayer( para );
+                        break;
+    
+                    case removeplayer:
+                        manager.removePlayer( para );
+                        break;
+    
+                    case editplayer:
+                        manager.editPlayer( para );
+                        break;
+    
+                    case resetstats:
+                        manager.resetStats( para );
+                        break;
+    
+                    case displayplayer:
+                        manager.displayerPlayer( para );
+                        break;
+    
+                    case rankings:
+                        manager.ranking( para );
+                        break;
+    
+                    case startgame:
+                        manager.startGame( para );
+                        break;
+
+                    case help:
+                        printHelp();
+                        break;
+    
+                    case exit:
+                        System.out.println();
+                        keyboard.close();
+                        manager.saveGame( dataFile );
+                        System.exit(0);
+                        break;
+                        
+                    case nosuchcommand:
+                    default:
+                        break;
+                }
+            }
+            catch ( ArrayIndexOutOfBoundsException e ) {
+                System.out.println( "Incorrect number of arguments supplied to command." );
+            }
+
         }
-
-        drawBoard(board);
 
     }
 
