@@ -61,26 +61,32 @@ public class ReversiBoard {
      * Board position (i, j), i is the # of row (numeric) and j is the # of column (alphabetic)
      */
     public void drawBoard() {
-        System.out.println( "  " + TABLE_LU 
+        System.out.print( "  " );
+        for ( int i = 0; i < size; i++ ) {
+            System.out.print( "   " + (char)('a' + i) );
+        }
+        System.out.println();
+        System.out.println( "   " + TABLE_LU 
                                  + repeat( ( "" + repeat( TABLE_H, 3 ) + TABLE_UD ), size-1 ) 
                                  + repeat( TABLE_H, 3 ) + TABLE_RU );
         for ( int i = 1; i <= size; i++ ) {
-            System.out.printf( "%2d%c", i, TABLE_V );
+            System.out.printf( "%2d %c", i, TABLE_V );
             for ( int j = 1; j <= size; j++ ) {
                 System.out.print( " " + board[i][j] + " " + TABLE_V );
             }
+            System.out.printf( " %d", i );
             System.out.println();
             if ( i < size ) {
-                System.out.println( "  " + TABLE_LR 
+                System.out.println( "   " + TABLE_LR 
                                          + repeat( ( "" + repeat( TABLE_H, 3 ) + TABLE_CROSS ), size-1 ) 
                                          + repeat( TABLE_H, 3 ) + TABLE_RL );
             } else {
-                System.out.println( "  " + TABLE_LD 
+                System.out.println( "   " + TABLE_LD 
                                          + repeat( ( "" + repeat( TABLE_H, 3 ) + TABLE_DU ), size-1 ) 
                                          + repeat( TABLE_H, 3 ) + TABLE_RD );
             }
         }
-        System.out.print(' ');
+        System.out.print( "  " );
         for ( int i = 0; i < size; i++ ) {
             System.out.print( "   " + (char)('a' + i) );
         }
