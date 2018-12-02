@@ -24,10 +24,10 @@ public class ReversiBoard {
 
     private ReversiDiskType[][] board;
     private int size;
-    private int currentPlayerId;
-    private int playerIdA;
-    private int playerIdB;
-    private int winnerId;
+    private ReversiPlayer currentPlayer;
+    private ReversiPlayer playerA;
+    private ReversiPlayer playerB;
+    private ReversiPlayer winner;
 
     private int diskCountA;
     private int diskCountB;
@@ -39,7 +39,7 @@ public class ReversiBoard {
      * @param playerIdB - the id of player B
      * @throws IllegalArgumentException if the input is smaller than minimum or larger than maximum
      */
-    public ReversiBoard( int n, int playerIdA, int playerIdB ) throws IllegalArgumentException {
+    public ReversiBoard( int n, ReversiPlayer playerA, ReversiPlayer playerB ) throws IllegalArgumentException {
         if ( n < SIZE_MIN && n > SIZE_MAX ) {
             throw new IllegalArgumentException( "invalid game board size." );
         }
@@ -49,10 +49,11 @@ public class ReversiBoard {
             for ( int j = 0; j <= size; j++ )
             board[i][j] = ReversiDiskType.EMPTY;
         }
-        this.playerIdA = playerIdA;
-        this.playerIdB = playerIdB;
+        this.playerA = playerA;
+        this.playerB = playerB;
+        
         // TODO: implement code to randomly choose who go first
-        currentPlayerId = playerIdA;
+        currentPlayer = playerA;
     }
 
     /**
@@ -93,13 +94,13 @@ public class ReversiBoard {
         System.out.println();
     }
 
-    public int getCurrentPlayer() {
+    public ReversiPlayer getCurrentPlayer() {
         gotoNextPlayer();
-        return currentPlayerId;
+        return currentPlayer;
     }
 
     private void gotoNextPlayer() {
-        currentPlayerId = ( currentPlayerId == playerIdA ) ? playerIdB : playerIdA;
+        currentPlayer = ( currentPlayer == playerA ) ? playerB : playerA;
     }
 
     private boolean isBoardFull() {
@@ -127,8 +128,8 @@ public class ReversiBoard {
         return false;
     }
 
-    public int winner() {
-        return winnerId;
+    public ReversiPlayer winner() {
+        return winner;
     }
 
     /**
@@ -195,12 +196,4 @@ public class ReversiBoard {
         return sb.toString();
     }
 
-    /**
-     * a main method for testing purpose
-     * @param args - the arguments passed in
-     */
-    public static void main( String[] args ) {
-        ReversiBoard testBoard = new ReversiBoard(12, 1, 2);
-        testBoard.drawBoard();
-    }
 }
