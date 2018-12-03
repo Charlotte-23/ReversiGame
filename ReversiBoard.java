@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -52,8 +53,17 @@ public class ReversiBoard {
         this.playerA = playerA;
         this.playerB = playerB;
         
-        // TODO: implement code to randomly choose who go first
-        currentPlayer = playerA;
+        
+       
+       
+        
+        
+        int iRandom = (int)(1+Math.random()*10);
+        if(iRandom%2==1) {
+        	  currentPlayer = playerA;
+        }else {
+        	  currentPlayer = playerB;
+        }
     }
 
     /**
@@ -105,6 +115,7 @@ public class ReversiBoard {
 
     private boolean isBoardFull() {
         // TODO:
+    	
         return false;
     }
 
