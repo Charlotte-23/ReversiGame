@@ -52,16 +52,14 @@ public class ReversiBoard {
         }
         this.playerA = playerA;
         this.playerB = playerB;
-        
-        
-       
-       
-        
-        
-        int iRandom = (int)(1+Math.random()*10);
-        if(iRandom%2==1) {
+        diskCountA = 0;
+        diskCountB = 0;
+        winner = null;
+
+        int iRandom = (int)( 1 + Math.random() * 10 );
+        if( iRandom % 2 == 1 ) {
         	  currentPlayer = playerA;
-        }else {
+        } else {
         	  currentPlayer = playerB;
         }
     }
@@ -104,21 +102,35 @@ public class ReversiBoard {
         System.out.println();
     }
 
+    /**
+     * A method that return a reference to the current player. It will gotoNextPlayer() first every time being called
+     * @return ReversiPlayer - the current ReversiPlayer reference
+     */
     public ReversiPlayer getCurrentPlayer() {
         gotoNextPlayer();
         return currentPlayer;
     }
 
+    /**
+     * A method used to swtich the current player
+     */
     private void gotoNextPlayer() {
         currentPlayer = ( currentPlayer == playerA ) ? playerB : playerA;
     }
 
+    /**
+     * A method to check if the board has not place for next turn
+     * @return true if the board is full
+     */
     private boolean isBoardFull() {
         // TODO:
     	
         return false;
     }
 
+    /**
+     * update the two diskCount
+     */
     private void updateDiskCounts() {
         // TODO:
     }
@@ -135,11 +147,20 @@ public class ReversiBoard {
         //      reverse disk if any
     }
 
+    /**
+     * A method to check if the game is over
+     * it will need to check if the board is full or one side has no disk on the board
+     * and then update the winner if true
+     * @return true if the game is over
+     */
     public boolean isOver() {
         //TODO: check if the game is finished and update the winner
         return false;
     }
 
+    /**
+     * @return the ReversiPlayer reference to the winner
+     */
     public ReversiPlayer winner() {
         return winner;
     }
