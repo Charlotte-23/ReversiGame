@@ -115,8 +115,9 @@ public class ReversiBoard {
     /**
      * to place the next disk
      * @param position
+     * @param diskType
      */
-    public void placeDisk( String position ) {
+    public void placeDisk( String position, ReversiDiskType diskType ) {
         //TODO: validate position first
         //      then check which player to go
         //      place the disk
