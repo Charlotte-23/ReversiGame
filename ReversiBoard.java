@@ -123,8 +123,7 @@ public class ReversiBoard {
      * @return true if the board is full
      */
     private boolean isBoardFull() {
-        // TODO:
-    	
+       
         return diskCountA+diskCountB == size*size;
     }
 
@@ -132,7 +131,21 @@ public class ReversiBoard {
      * update the two diskCount
      */
     private void updateDiskCounts() {
-        // TODO:
+        int x=0;
+        int o=0;
+        
+        for(int i=1;i<=size;i++) {
+        	for(int j=1;j<=size;j++) {
+        		if(board[i][j]==ReversiDiskType.X) {
+        			x++;
+        		}else {
+        			o++;
+        			
+        		}
+        	}
+        }
+        diskCountA=x;
+        diskCountB=o;
     }
 
     /**
