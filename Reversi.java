@@ -12,10 +12,6 @@ public class Reversi {
             System.out.print( "Input the size of the game board (even integer between 2-26): " );
             int size = keyboard.nextInt();
             keyboard.nextLine();
-            if(size%2 == 1){
-              size++;
-              System.out.println("You typed in an odd integer, round up to the next even number: " + size);
-            }
             System.out.print("You wanna play with your friend?(y) or with computer?(n): ");
             String modeSelect;;
             while ( !(modeSelect = keyboard.next()).equals( "y" ) && !modeSelect.equals( "n" ) ) {

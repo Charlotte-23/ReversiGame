@@ -44,6 +44,9 @@ public class ReversiBoard {
         if ( n < SIZE_MIN || n > SIZE_MAX ) {
             System.out.println( "Invalid size, set to default (size = 8)" );
             n = 8;
+        } else if( size%2 == 1 ){
+            size++;
+            System.out.println("You typed in an odd integer, round up to the next even number: " + size);
         }
         size = n;
         board = new ReversiDiskType[size+1][size+1];
