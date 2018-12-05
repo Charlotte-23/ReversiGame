@@ -111,11 +111,10 @@ public class ReversiBoard {
     }
 
     /**
-     * A method that return a reference to the current player. It will gotoNextPlayer() first every time being called
+     * A method that return a reference to the current player.
      * @return ReversiPlayer - the current ReversiPlayer reference
      */
     public ReversiPlayer getCurrentPlayer() {
-        gotoNextPlayer();
         return currentPlayer;
     }
 
@@ -132,7 +131,6 @@ public class ReversiBoard {
      * @return true if the board is full
      */
     private boolean isBoardFull() {
-
         return diskCountA+diskCountB == size*size;
     }
 
@@ -167,6 +165,10 @@ public class ReversiBoard {
         //      then check which player to go
         //      place the disk
         //      reverse disk if any
+    	if ( !isValidPosition(position) || !isFlipable(position, diskType) ) return false;
+    	flip( position, diskType );
+    	updateDiskCounts();
+    	gotoNextPlayer();
     	return true;
     }
 
@@ -180,7 +182,6 @@ public class ReversiBoard {
         //check if the game is finished and update the winner
     	if(diskCountA==0||diskCountB==0||isBoardFull())
     		return true;
-
 
         return false;
     }
@@ -207,6 +208,97 @@ public class ReversiBoard {
         return x >= SIZE_MIN && x <= size
             && y >= SIZE_MIN && y <= size
             && board[x][y] == ReversiDiskType.EMPTY;
+    }
+
+    public boolean isFlipable( String position, ReversiDiskType type ) {
+    	int x = parseX(position);
+    	int y = parseY(position);
+    	// right
+    	for ( int i = 1; x+i <= size; i++ ) {
+    		if ( board[x+i][y] == ReversiDiskType.EMPTY ) return false;
+    		if ( board[x+i][y] == type ) return i > 1 ? true: false;
+    	}
+    	// left
+    	for ( int i = 1; x-i >= 1; i++ ) {
+    		if ( board[x-i][y] == ReversiDiskType.EMPTY ) return false;
+    		if ( board[x-i][y] == type ) return i > 1 ? true: false;
+    	}
+    	// up
+    	for ( int i = 1; y-i >= 1; i++ ) {
+    		if ( board[x][y-i] == ReversiDiskType.EMPTY ) return false;
+    		if ( board[x][y-i] == type ) return i > 1 ? true: false;
+    	}
+    	// down
+    	for ( int i = 1; +i <= size; i++ ) {
+    		if ( board[x][y+i] == ReversiDiskType.EMPTY ) return false;
+    		if ( board[x][y+i] == type ) return i > 1 ? true: false;
+    	}
+    	// left up
+    	for ( int i = 1; x-i >= 1 && y-i >= 1; i++ ) {
+    		if ( board[x-i][y-i] == ReversiDiskType.EMPTY ) return false;
+    		if ( board[x-i][y-i] == type ) return i > 1 ? true: false;
+    	}
+    	// right up
+    	for ( int i = 1; x+i <= size && y-i >= 1; i++ ) {
+    		if ( board[x+i][y-i] == ReversiDiskType.EMPTY ) return false;
+    		if ( board[x+i][y-i] == type ) return i > 1 ? true: false;
+    	}
+    	// left down
+    	for ( int i = 1; x-i >= 1 && y+i <= size; i++ ) {
+    		if ( board[x-i][y+i] == ReversiDiskType.EMPTY ) return false;
+    		if ( board[x-i][y+i] == type ) return i > 1 ? true: false;
+    	}
+    	// right down
+    	for ( int i = 1; x+i <= size && y+i <= size; i++ ) {
+    		if ( board[x+i][y+i] == ReversiDiskType.EMPTY ) return false;
+    		if ( board[x+i][y+i] == type ) return i > 1 ? true: false;
+    	}
+    	return false;
+    }
+    
+    private void flip( String position, ReversiDiskType type ) {
+    	int x = parseX(position);
+    	int y = parseY(position);
+    	// right
+    	for ( int i = 1; x+i <= size; i++ ) {
+    		if ( board[x+i][y] != type ) board[x+i][y] = type;
+    		else break;
+    	}
+    	// left
+    	for ( int i = 1; x-i >= 1; i++ ) {
+    		if ( board[x-i][y] != type ) board[x-i][y] = type;
+    		else break;
+    	}
+    	// up
+    	for ( int i = 1; y-i >= 1; i++ ) {
+    		if ( board[x][y-i] != type ) board[x][y-i] = type;
+    		else break;
+    	}
+    	// down
+    	for ( int i = 1; +i <= size; i++ ) {
+    		if ( board[x][y+i] != type ) board[x][y+i] = type;
+    		else break;
+    	}
+    	// left up
+    	for ( int i = 1; x-i >= 1 && y-i >= 1; i++ ) {
+    		if ( board[x-i][y-i] != type ) board[x-i][y-i] = type;
+    		else break;
+    	}
+    	// right up
+    	for ( int i = 1; x+i <= size && y-i >= 1; i++ ) {
+    		if ( board[x+i][y-i] != type ) board[x+i][y-i] = type;
+    		else break;
+    	}
+    	// left down
+    	for ( int i = 1; x-i >= 1 && y+i <= size; i++ ) {
+    		if ( board[x-i][y+i] != type ) board[x-i][y+i] = type;
+    		else break;
+    	}
+    	// right down
+    	for ( int i = 1; x+i <= size && y+i <= size; i++ ) {
+    		if ( board[x+i][y+i] != type ) board[x+i][y+i] = type;
+    		else break;
+    	}
     }
 
     /**
