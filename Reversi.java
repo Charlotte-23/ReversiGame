@@ -9,31 +9,37 @@ public class Reversi {
 
         game:
         while ( true ) {
-            System.out.print( "Input the size of the game board (even integer between 2-26): " );
-            int size = keyboard.nextInt();
-            keyboard.nextLine();
-            System.out.print("You wanna play with your friend? (Enter 1) or with computer? (Enter 2): ");
-            String modeSelect;;
-            while ( !(modeSelect = keyboard.next()).equals( "1" ) && !modeSelect.equals( "2" ) ) {
+            System.out.print("You wanna play with your friend (Enter 1), with computer (Enter 2), or watch two computers play (Enter 3) ?: ");
+            String modeSelect;
+            while ( !(modeSelect = keyboard.next()).equals( "1" ) && !modeSelect.equals( "2" ) && !modeSelect.equals("3") ) {
                 keyboard.nextLine();
                 System.out.print( "No a valaid answer, input again: " );
             }
             keyboard.nextLine();
+
+            System.out.print( "Input the size of the game board (even integer between 2-26): " );
+            int size = keyboard.nextInt();
+            keyboard.nextLine();
+            
             ReversiBoard board = new ReversiBoard( 2, new ReversiHumanPlayer( "name1" ), new ReversiHumanPlayer( "name2" ) );
-            if(modeSelect.equals("y")){
+            if(modeSelect.equals("1")){
                 System.out.print( "Enter the name of player X: " );
                 String name1 = keyboard.nextLine();
                 System.out.print( "Enter the name of player O: " );
                 String name2 = keyboard.nextLine();
                 board = new ReversiBoard( size, new ReversiHumanPlayer( name1 ), new ReversiHumanPlayer( name2 ) );
-            }else{
+            }else if (modeSelect.equals("2")){
                 String name1 = "You";
                 String name2 = "Computer";
                 board = new ReversiBoard( size, new ReversiHumanPlayer( name1 ), new ReversiComputerPlayer( name2 ) );
+            }else{
+                String name1 = "Computer 1";
+                String name2 = "Computer 2";
+                board = new ReversiBoard( size, new ReversiComputerPlayer( name1 ), new ReversiComputerPlayer( name2 ) );
             }
             System.out.println("\n==========================================================\n");
             int loopcounter = 0;
-            while( !board.isOver() || loopcounter > 2 ) {
+            while( !board.isOver() && loopcounter < 2 ) {
                 board.drawBoard();
                 if ( board.hasNextMove( board.getCurrentType() ) ) {
                     while ( !board.placeDisk( board.getCurrentPlayer().getMove(board, board.getCurrentType()),
