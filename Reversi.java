@@ -36,6 +36,7 @@ public class Reversi {
                 board = new ReversiBoard( size, new ReversiHumanPlayer( name1 ), new ReversiComputerPlayer( name2 ) );
             }
             while( !board.isOver() ) {
+                System.out.println("\n==========================================================\n");
                 board.drawBoard();
                 if ( board.hasNextMove( board.getCurrentType() ) ) {
                     while ( !board.placeDisk( board.getCurrentPlayer().getMove(board, board.getCurrentType()),
