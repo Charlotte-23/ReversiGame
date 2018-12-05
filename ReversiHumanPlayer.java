@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * ReversiHumanPlayer
  */
@@ -6,7 +8,7 @@ public class ReversiHumanPlayer extends ReversiPlayer {
     public ReversiHumanPlayer( String name ) {
         super( name );
     }
-
+    
     public String getMove( ReversiBoard board, ReversiDiskType diskType ) {
         String validInputA = "abcdefghi";
         String validInputB = "123456789";
