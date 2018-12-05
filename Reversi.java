@@ -9,16 +9,16 @@ public class Reversi {
 
         game:
         while ( true ) {
-            System.out.print( "Input the size of the game board (even integer between 2-26) : " );
+            System.out.print( "Input the size of the game board (even integer between 2-26): " );
             int size = keyboard.nextInt();
             keyboard.nextLine();
             if(size%2 == 1){
               size++;
               System.out.println("You typed in an odd integer, round up to the next even number: " + size);
             }
-            System.out.print( "Enter the name of player X:" );
+            System.out.print( "Enter the name of player X: " );
             String name1 = keyboard.nextLine();
-            System.out.print( "Enter the name of player O:" );
+            System.out.print( "Enter the name of player O: " );
             String name2 = keyboard.nextLine();
             ReversiBoard board = new ReversiBoard( size, new ReversiHumanPlayer( name1 ), new ReversiHumanPlayer( name2 ) );
             while( !board.isOver() ) {
@@ -29,7 +29,7 @@ public class Reversi {
                 }
             }
             if(board.getWinner() == null){
-              System.out.println("Game Over, draw!");
+              System.out.println("Game is a tie!");
             }else{
               System.out.println( "Game Over! " + board.getWinner().getName() + " wins!" );
             }

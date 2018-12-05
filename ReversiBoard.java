@@ -43,7 +43,7 @@ public class ReversiBoard {
      */
     public ReversiBoard( int n, ReversiPlayer playerA, ReversiPlayer playerB ) throws IllegalArgumentException {
         if ( n < SIZE_MIN || n > SIZE_MAX ) {
-            System.out.println( "Invalid size, set to default (8)" );
+            System.out.println( "Invalid size, set to default (size = 8)" );
             n = 8;
         }
         size = n;
