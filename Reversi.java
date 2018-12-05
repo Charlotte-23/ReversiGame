@@ -35,8 +35,8 @@ public class Reversi {
                 String name2 = "Computer";
                 board = new ReversiBoard( size, new ReversiHumanPlayer( name1 ), new ReversiComputerPlayer( name2 ) );
             }
+            System.out.println("\n==========================================================\n");
             while( !board.isOver() ) {
-                System.out.println("\n==========================================================\n");
                 board.drawBoard();
                 if ( board.hasNextMove( board.getCurrentType() ) ) {
                     while ( !board.placeDisk( board.getCurrentPlayer().getMove(board, board.getCurrentType()),
@@ -46,6 +46,7 @@ public class Reversi {
                 } else {
                     System.out.println( board.getCurrentPlayer().getName() + " is unable to put the next disk" );
                 }
+                System.out.println("\n==========================================================\n");
             }
             board.drawBoard();
             if(board.getWinner() == null){
