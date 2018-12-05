@@ -20,12 +20,12 @@ public class ReversiComputerPlayer extends ReversiPlayer {
         	}
         }
         int listSize = positionsList.length() / 2;
-        int chosenMove = (int)( 1 + Math.random() * listSize );
+        int chosenMove = (int)( Math.random() * listSize );
         if(positionsList.length() == 0){
-        	System.out.println("\nComputer didn't make move");
+        	System.out.printf("%nComputer playing %s, didn't make move%n", ""+diskType);
         }else{
-        	move = positionsList.substring(0, 2);
-        	System.out.println("\nComputer chose to move at " + move);
+        	move = positionsList.substring(chosenMove, chosenMove + 2);
+        	System.out.printf("%nComputer playing %s,chose to move at %s", ""+diskType, move);
         }
         return move;
     }
