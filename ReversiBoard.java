@@ -416,6 +416,15 @@ public class ReversiBoard {
     	}
     }
 
+    public boolean hasNextMove( ReversiDiskType type ) {
+        for ( int i = 1; i <= size; i++ ) {
+            for ( int j = 1; j <= size; j++ ) {
+                if ( board[i][j] == ReversiDiskType.EMPTY && isFlipable(""+i+(char)(j+'a'-1), type) ) return true; 
+            }
+        }
+        return false;
+    }
+
     /**
      * a method to parse the x coordination of the disk
      * @param position - the given position String such as "a1", "1C"

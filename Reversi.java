@@ -23,9 +23,13 @@ public class Reversi {
             ReversiBoard board = new ReversiBoard( size, new ReversiHumanPlayer( name1 ), new ReversiHumanPlayer( name2 ) );
             while( !board.isOver() ) {
                 board.drawBoard();
-                while ( !board.placeDisk( board.getCurrentPlayer().getMove(board, board.getCurrentType()),
+                if ( board.hasNextMove( board.getCurrentType() ) ) {
+                    while ( !board.placeDisk( board.getCurrentPlayer().getMove(board, board.getCurrentType()),
                                           board.getCurrentType() ) ) {
-                    System.out.println( "Invalid move, try again" );
+                        System.out.println( "Invalid move, try again" );
+                    }
+                } else {
+                    System.out.println( board.getCurrentPlayer().getName() + " is unable to put the next disk" );
                 }
             }
             board.drawBoard();
