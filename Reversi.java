@@ -28,6 +28,7 @@ public class Reversi {
                     System.out.println( "Invalid move, try again" );
                 }
             }
+            board.drawBoard();
             if(board.getWinner() == null){
               System.out.println("Game is a tie!");
             }else{
