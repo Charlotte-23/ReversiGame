@@ -209,8 +209,14 @@ public class ReversiBoard {
      * @return true if the position is valid
      */
     public boolean isValidPosition( String position ) {
-        int x = parseX( position );
-        int y = parseY( position );
+        int x;
+        int y;
+        try{
+          x = parseX( position );
+          y = parseY( position );
+        }catch(Exception e){
+          return false;
+        }
         return x >= SIZE_MIN && x <= size
             && y >= SIZE_MIN && y <= size
             && board[x][y] == ReversiDiskType.EMPTY;
