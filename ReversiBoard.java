@@ -223,8 +223,8 @@ public class ReversiBoard {
         }catch(Exception e){
           return false;
         }
-        return x >= SIZE_MIN && x <= size
-            && y >= SIZE_MIN && y <= size
+        return x >= 1 && x <= size
+            && y >= 1 && y <= size
             && board[x][y] == ReversiDiskType.EMPTY;
     }
 
