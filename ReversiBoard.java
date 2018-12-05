@@ -123,8 +123,7 @@ public class ReversiBoard {
      * @return true if the board is full
      */
     private boolean isBoardFull() {
-        // TODO:
-    	
+       
         return diskCountA+diskCountB == size*size;
     }
 
@@ -132,7 +131,21 @@ public class ReversiBoard {
      * update the two diskCount
      */
     private void updateDiskCounts() {
-        // TODO:
+        int x=0;
+        int o=0;
+        
+        for(int i=1;i<=size;i++) {
+        	for(int j=1;j<=size;j++) {
+        		if(board[i][j]==ReversiDiskType.X) {
+        			x++;
+        		}else {
+        			o++;
+        			
+        		}
+        	}
+        }
+        diskCountA=x;
+        diskCountB=o;
     }
 
     /**
@@ -145,6 +158,10 @@ public class ReversiBoard {
         //      then check which player to go
         //      place the disk
         //      reverse disk if any
+    	
+    	
+    	
+    	
     }
 
     /**
@@ -154,7 +171,11 @@ public class ReversiBoard {
      * @return true if the game is over
      */
     public boolean isOver() {
-        //TODO: check if the game is finished and update the winner
+        //check if the game is finished and update the winner
+    	if(diskCountA==0||diskCountB==0||isBoardFull())
+    		return true;
+    	
+    	
         return false;
     }
 
