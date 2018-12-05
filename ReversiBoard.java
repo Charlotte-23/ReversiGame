@@ -126,7 +126,7 @@ public class ReversiBoard {
     /**
      * A method used to swtich the current player
      */
-    private void gotoNextPlayer() {
+    public void gotoNextPlayer() {
         currentPlayer = ( currentPlayer == playerA ) ? playerB : playerA;
         currentType = ( currentType == ReversiDiskType.X ) ? ReversiDiskType.O : ReversiDiskType.X;
     }

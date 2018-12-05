@@ -36,15 +36,19 @@ public class Reversi {
                 board = new ReversiBoard( size, new ReversiHumanPlayer( name1 ), new ReversiComputerPlayer( name2 ) );
             }
             System.out.println("\n==========================================================\n");
-            while( !board.isOver() ) {
+            int loopcounter = 0;
+            while( !board.isOver() || loopcounter > 2 ) {
                 board.drawBoard();
                 if ( board.hasNextMove( board.getCurrentType() ) ) {
                     while ( !board.placeDisk( board.getCurrentPlayer().getMove(board, board.getCurrentType()),
                                           board.getCurrentType() ) ) {
                         System.out.println( "Invalid move, try again" );
                     }
+                    loopcounter = 0;
                 } else {
                     System.out.println( board.getCurrentPlayer().getName() + " is unable to put the next disk" );
+                    board.gotoNextPlayer();
+                    loopcounter++;
                 }
                 System.out.println("\n==========================================================\n");
             }
@@ -54,7 +58,6 @@ public class Reversi {
             }else{
               System.out.println( "Game Over! " + board.getWinner().getName() + " wins!" );
             }
-            
             
             System.out.print( "Play again? (y/n): " );
             String flag;
