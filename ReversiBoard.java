@@ -312,8 +312,13 @@ public class ReversiBoard {
      * @param position - the given position String such as "a1", "1C"
      * @return the x coordination
      */
-    private int parseX( String position ) {
-        return Integer.parseInt( position );
+    private int parseX( String position ) throws IllegalArgumentException {
+      Pattern p = Pattern.compile( "\\d{1,}" );
+      Matcher m = p.matcher( position );
+      if ( m.find() ) {
+          return Integer.parseInt(m.group(0));
+      }
+      throw new IllegalArgumentException();
     }
 
     /**
@@ -325,7 +330,7 @@ public class ReversiBoard {
         Pattern p = Pattern.compile( "[A-z]{1}" );
         Matcher m = p.matcher( position );
         if ( m.find() ) {
-            return (int) (m.group(0).toLowerCase().charAt(0) - 'a');
+            return (int) (m.group(0).toLowerCase().charAt(0) - 'a') + 1;
         }
         throw new IllegalArgumentException();
     }
@@ -357,5 +362,10 @@ public class ReversiBoard {
         }
         return sb.toString();
     }
+    // public static void main(String[] args ) {
+    //   ReversiBoard test = new ReversiBoard( 8, new ReversiHumanPlayer( "aaaa" ), new ReversiHumanPlayer( "1111" ) );
+    //   System.out.println(test.parseX( "a1" ));
+    //   System.out.println(test.parseY( "a1" ));
+    // }
 
 }
