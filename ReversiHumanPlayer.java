@@ -16,7 +16,7 @@ public class ReversiHumanPlayer extends ReversiPlayer {
             String move = s.nextLine().substring(0,2);
             try {
                 if ( board.isValidPosition(move) ) {
-                    return move.subString(0,2);
+                    return move;
                 }
             } catch (Exception e) {
             } finally {
