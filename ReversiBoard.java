@@ -117,6 +117,13 @@ public class ReversiBoard {
     }
 
     /**
+     * A method that return the size of the board
+     */
+    public int getBoardSize(){
+    	return size;
+    }
+
+    /**
      * A method used to swtich the current player
      */
     private void gotoNextPlayer() {
