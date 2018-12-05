@@ -166,10 +166,7 @@ public class ReversiBoard {
      * @param diskType
      */
     public boolean placeDisk( String position, ReversiDiskType diskType ) {
-        //TODO: validate position first
-        //      then check which player to go
-        //      place the disk
-        //      reverse disk if any
+        //System.out.println( isValidPosition(position) + "" + isFlipable(position, diskType) );
     	if ( !isValidPosition(position) || !isFlipable(position, diskType) ) return false;
         flip( position, diskType );
         board[parseX(position)][parseY(position)] = diskType;
