@@ -20,7 +20,7 @@ public class Reversi {
             String name1 = keyboard.nextLine();
             System.out.print( "Enter the name of player O:" );
             String name2 = keyboard.nextLine();
-            ReversiBoard board = new ReversiBoard( size, new ReversiHumanPlayer( "name1" ), new ReversiHumanPlayer( "name2" ) );
+            ReversiBoard board = new ReversiBoard( size, new ReversiHumanPlayer( name1 ), new ReversiHumanPlayer( name2 ) );
             while( !board.isOver() ) {
                 board.drawBoard();
                 while ( !board.placeDisk( board.getCurrentPlayer().getMove(board, board.getCurrentType()),
