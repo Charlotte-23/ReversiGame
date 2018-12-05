@@ -439,7 +439,7 @@ public class ReversiBoard {
      * @return the x coordination
      */
     private int parseX( String position ) throws IllegalArgumentException {
-      Pattern p = Pattern.compile( "\\d{1,}" );
+      Pattern p = Pattern.compile( "(\\d{1,})" );
       Matcher m = p.matcher( position );
       if ( m.find() ) {
           return Integer.parseInt(m.group(0));
@@ -488,10 +488,10 @@ public class ReversiBoard {
         }
         return sb.toString();
     }
-    // public static void main(String[] args ) {
-    //   ReversiBoard test = new ReversiBoard( 8, new ReversiHumanPlayer( "aaaa" ), new ReversiHumanPlayer( "1111" ) );
-    //   System.out.println(test.parseX( "a1" ));
-    //   System.out.println(test.parseY( "a1" ));
-    // }
+    public static void main(String[] args ) {
+      ReversiBoard test = new ReversiBoard( 8, new ReversiHumanPlayer( "aaaa" ), new ReversiHumanPlayer( "1111" ) );
+      System.out.println(test.parseX( "a14" ));
+      System.out.println(test.parseY( "a1" ));
+    }
 
 }

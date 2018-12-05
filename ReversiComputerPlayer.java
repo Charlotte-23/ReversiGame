@@ -9,7 +9,6 @@ public class ReversiComputerPlayer extends ReversiPlayer {
 
     public String getMove( ReversiBoard board, ReversiDiskType diskType ) {
         String move = null;
-        // TODO:
         StringBuilder positionsList = new StringBuilder();
         String positionPointer = null;
         for(int x = 1; x <= board.getBoardSize(); x++){
