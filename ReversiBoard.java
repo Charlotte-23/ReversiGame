@@ -125,7 +125,7 @@ public class ReversiBoard {
     private boolean isBoardFull() {
         // TODO:
     	
-        return false;
+        return diskCountA+diskCountB == size*size;
     }
 
     /**
