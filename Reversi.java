@@ -16,28 +16,59 @@ public class Reversi {
               size++;
               System.out.println("You typed in an odd integer, round up to the next even number: " + size);
             }
-            System.out.print( "Enter the name of player X: " );
-            String name1 = keyboard.nextLine();
-            System.out.print( "Enter the name of player O: " );
-            String name2 = keyboard.nextLine();
-            ReversiBoard board = new ReversiBoard( size, new ReversiHumanPlayer( name1 ), new ReversiHumanPlayer( name2 ) );
-            while( !board.isOver() ) {
-                board.drawBoard();
-                if ( board.hasNextMove( board.getCurrentType() ) ) {
-                    while ( !board.placeDisk( board.getCurrentPlayer().getMove(board, board.getCurrentType()),
-                                          board.getCurrentType() ) ) {
-                        System.out.println( "Invalid move, try again" );
+            System.out.print("You wanna play with your friend?(y) or with computer?(n): ");
+            String modeSelect;;
+            while ( !(modeSelect = keyboard.next()).equals( "y" ) && !modeSelect.equals( "n" ) ) {
+                keyboard.nextLine();
+                System.out.print( "No a valaid answer, input again: " );
+            }
+            keyboard.nextLine();
+            if(modeSelect.equals("y")){
+                System.out.print( "Enter the name of player X: " );
+                String name1 = keyboard.nextLine();
+                System.out.print( "Enter the name of player O: " );
+                String name2 = keyboard.nextLine();
+                ReversiBoard board = new ReversiBoard( size, new ReversiHumanPlayer( name1 ), new ReversiHumanPlayer( name2 ) );
+                while( !board.isOver() ) {
+                    board.drawBoard();
+                    if ( board.hasNextMove( board.getCurrentType() ) ) {
+                        while ( !board.placeDisk( board.getCurrentPlayer().getMove(board, board.getCurrentType()),
+                                              board.getCurrentType() ) ) {
+                            System.out.println( "Invalid move, try again" );
+                        }
+                    } else {
+                        System.out.println( board.getCurrentPlayer().getName() + " is unable to put the next disk" );
                     }
-                } else {
-                    System.out.println( board.getCurrentPlayer().getName() + " is unable to put the next disk" );
+                }
+                board.drawBoard();
+                if(board.getWinner() == null){
+                  System.out.println("Game is a tie!");
+                }else{
+                  System.out.println( "Game Over! " + board.getWinner().getName() + " wins!" );
+                }
+            }else{
+                String name1 = "You";
+                String name2 = "Computer";
+                ReversiBoard board = new ReversiBoard( size, new ReversiHumanPlayer( name1 ), new ReversiComputerPlayer( name2 ) );
+                while( !board.isOver() ) {
+                    board.drawBoard();
+                    if ( board.hasNextMove( board.getCurrentType() ) ) {
+                        while ( !board.placeDisk( board.getCurrentPlayer().getMove(board, board.getCurrentType()),
+                                              board.getCurrentType() ) ) {
+                            System.out.println( "Invalid move, try again" );
+                        }
+                    } else {
+                        System.out.println( board.getCurrentPlayer().getName() + " is unable to put the next disk" );
+                    }
+                }
+                board.drawBoard();
+                if(board.getWinner() == null){
+                  System.out.println("Game is a tie!");
+                }else{
+                  System.out.println( "Game Over! " + board.getWinner().getName() + " wins!" );
                 }
             }
-            board.drawBoard();
-            if(board.getWinner() == null){
-              System.out.println("Game is a tie!");
-            }else{
-              System.out.println( "Game Over! " + board.getWinner().getName() + " wins!" );
-            }
+            
             System.out.print( "Play again? (y/n): " );
             String flag;
             while ( !(flag = keyboard.next()).equals( "y" ) && !flag.equals( "n" ) ) {
