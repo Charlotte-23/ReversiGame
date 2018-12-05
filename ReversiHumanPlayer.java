@@ -12,7 +12,7 @@ public class ReversiHumanPlayer extends ReversiPlayer {
     public String getMove( ReversiBoard board, ReversiDiskType diskType ) {
         String validInputA = "abcdefghi";
         String validInputB = "123456789";
-        // TODO:
+
         Scanner s = new Scanner(System.in);
         for (;;) {
             System.out.Println("where do you wanna place your disk? (a1-i9)");
