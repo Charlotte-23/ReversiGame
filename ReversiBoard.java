@@ -488,7 +488,7 @@ public class ReversiBoard {
     public static void main(String[] args ) {
       ReversiBoard test = new ReversiBoard( 8, new ReversiHumanPlayer( "aaaa" ), new ReversiHumanPlayer( "1111" ) );
       System.out.println(test.parseX( "a14" ));
-      System.out.println(test.parseY( "a1" ));
+      System.out.println(test.parseY( "14l" ));
     }
 
 }
