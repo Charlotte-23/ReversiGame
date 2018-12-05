@@ -12,9 +12,9 @@ public class Reversi {
             System.out.print( "Input the size of the game board (even integer between 2-26): " );
             int size = keyboard.nextInt();
             keyboard.nextLine();
-            System.out.print("You wanna play with your friend?(y) or with computer?(n): ");
+            System.out.print("You wanna play with your friend? (Enter 1) or with computer? (Enter 2): ");
             String modeSelect;;
-            while ( !(modeSelect = keyboard.next()).equals( "y" ) && !modeSelect.equals( "n" ) ) {
+            while ( !(modeSelect = keyboard.next()).equals( "1" ) && !modeSelect.equals( "2" ) ) {
                 keyboard.nextLine();
                 System.out.print( "No a valaid answer, input again: " );
             }
