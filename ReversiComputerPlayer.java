@@ -24,7 +24,7 @@ public class ReversiComputerPlayer extends ReversiPlayer {
         if(positionsList.length() == 0){
         	System.out.printf("%nComputer playing %s, didn't make move%n", ""+diskType);
         }else{
-        	move = positionsList.substring(chosenMove, chosenMove + 2);
+        	move = positionsList.substring(0, 2);
         	System.out.printf("%nComputer playing %s, made move at %s", ""+diskType, move);
         }
         return move;
