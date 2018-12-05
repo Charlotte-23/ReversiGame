@@ -13,7 +13,7 @@ public class ReversiHumanPlayer extends ReversiPlayer {
         Scanner s = new Scanner(System.in);
         System.out.println( "\n" + board.getCurrentPlayer().getName() + ", playing " + board.getCurrentType() );
         System.out.print("Where do you wanna place your disk? (e.g. a1, 1a): ");
-        String move = s.nextLine().substring(0,2);
+        String move = s.nextLine().trim();
         return move;
     }
 }
