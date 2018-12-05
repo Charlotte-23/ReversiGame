@@ -26,6 +26,7 @@ public class ReversiBoard {
     private ReversiDiskType[][] board;
     private int size;
     private ReversiPlayer currentPlayer;
+    private ReversiDiskType currentType;
     private ReversiPlayer playerA;
     private ReversiPlayer playerB;
     private ReversiPlayer winner;
@@ -41,8 +42,9 @@ public class ReversiBoard {
      * @throws IllegalArgumentException if the input is smaller than minimum or larger than maximum
      */
     public ReversiBoard( int n, ReversiPlayer playerA, ReversiPlayer playerB ) throws IllegalArgumentException {
-        if ( n < SIZE_MIN && n > SIZE_MAX ) {
-            throw new IllegalArgumentException( "invalid game board size." );
+        if ( n < SIZE_MIN || n > SIZE_MAX ) {
+            System.out.println( "Invalid size, set to default (8)" );
+            n = 8;
         }
         size = n;
         board = new ReversiDiskType[size+1][size+1];
@@ -53,14 +55,16 @@ public class ReversiBoard {
         this.playerA = playerA;
         this.playerB = playerB;
         diskCountA = 0;
-        diskCountB = 0;
+        diskCountB = 0;  
         winner = null;
 
         int iRandom = (int)( 1 + Math.random() * 10 );
         if( iRandom % 2 == 1 ) {
-        	  currentPlayer = playerA;
+              currentPlayer = playerA;
+              currentType = ReversiDiskType.X;
         } else {
-        	  currentPlayer = playerB;
+              currentPlayer = playerB;
+              currentType = ReversiDiskType.O;
         }
     }
 
@@ -116,6 +120,7 @@ public class ReversiBoard {
      */
     private void gotoNextPlayer() {
         currentPlayer = ( currentPlayer == playerA ) ? playerB : playerA;
+        currentType = ( currentType == ReversiDiskType.X ) ? ReversiDiskType.O : ReversiDiskType.X;
     }
 
     /**
@@ -153,15 +158,12 @@ public class ReversiBoard {
      * @param position
      * @param diskType
      */
-    public void placeDisk( String position, ReversiDiskType diskType ) {
+    public boolean placeDisk( String position, ReversiDiskType diskType ) {
         //TODO: validate position first
         //      then check which player to go
         //      place the disk
         //      reverse disk if any
-    	
-    	
-    	
-    	
+    	return true;
     }
 
     /**
@@ -177,6 +179,10 @@ public class ReversiBoard {
     	
     	
         return false;
+    }
+
+    public ReversiDiskType getCurrentType() {
+        return currentType;
     }
 
     /**
