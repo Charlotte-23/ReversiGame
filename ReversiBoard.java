@@ -215,6 +215,7 @@ public class ReversiBoard {
      * @return true if the position is valid
      */
     public boolean isValidPosition( String position ) {
+        if ( position == null ) return false;
         int x;
         int y;
         try{
