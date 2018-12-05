@@ -23,6 +23,7 @@ public class ReversiComputerPlayer extends ReversiPlayer {
         int listSize = positionsList.length() / 2;
         int chosenMove = (int)( 1 + Math.random() * listSize );
         if(positionsList.length() == 0){
+        	System.out.println("\nComputer didn't make move");
         }else{
         	move = positionsList.substring(0, 2);
         	System.out.println("\nComputer chose to move at " + move);
