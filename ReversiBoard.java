@@ -44,8 +44,8 @@ public class ReversiBoard {
         if ( n < SIZE_MIN || n > SIZE_MAX ) {
             System.out.println( "Invalid size, set to default (size = 8)" );
             n = 8;
-        } else if( size%2 == 1 ){
-            size++;
+        } else if( n%2 == 1 ){
+            n++;
             System.out.println("\nThe size is an odd integer, round up to the next even number: " + size);
         }
         size = n;
