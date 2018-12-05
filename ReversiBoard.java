@@ -191,7 +191,7 @@ public class ReversiBoard {
      * @param position - the position String in the format of "a1", "A1", "1a" or "1A"
      * @return true if the position is valid
      */
-    private boolean isValidPosition( String position ) {
+    public boolean isValidPosition( String position ) {
         int x = parseX( position );
         int y = parseY( position );
         return x >= SIZE_MIN && x <= size

@@ -10,16 +10,17 @@ public class ReversiHumanPlayer extends ReversiPlayer {
     }
     
     public String getMove( ReversiBoard board, ReversiDiskType diskType ) {
-        String validInputA = "abcdefghi";
-        String validInputB = "123456789";
-
         Scanner s = new Scanner(System.in);
-        for (;;) {
-            System.out.Println("where do you wanna place your disk? (a1-i9)");
-            String move = s.nextLine();
-            if (validInputA.indexOf(ans.charAt(0)) != -1 &&
-                validInputB.indexOf(ans.charAt(1)) != -1) {
-                return move.subString(0,2);
+        while ( true ) {
+            System.out.print("where do you wanna place your disk? (e.g. a1, 1a):");
+            String move = s.nextLine().substring(0,2);
+            try {
+                if ( board.isValidPosition(move) ) {
+                    return move.subString(0,2);
+                }
+            } catch (Exception e) {
+            } finally {
+                System.out.print( "Not a valid move, input again: " );
             }
         }
     } 
