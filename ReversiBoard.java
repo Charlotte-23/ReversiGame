@@ -33,7 +33,7 @@ public class ReversiBoard {
 
     private int diskCountA;
     private int diskCountB;
-    
+
     /**
      * the constructor that initializes a valid game board of size n
      * @param n - the size of the board
@@ -52,10 +52,14 @@ public class ReversiBoard {
             for ( int j = 0; j <= size; j++ )
             board[i][j] = ReversiDiskType.EMPTY;
         }
+        board[size/2][size/2] = ReversiDiskType.X;
+        board[size/2 + 1][size/2 + 1] = ReversiDiskType.X;
+        board[size/2 + 1][size/2] = ReversiDiskType.O;
+        board[size/2][size/2 + 1] = ReversiDiskType.O;
         this.playerA = playerA;
         this.playerB = playerB;
-        diskCountA = 0;
-        diskCountB = 0;  
+        diskCountA = 2;
+        diskCountB = 2;
         winner = null;
 
         int iRandom = (int)( 1 + Math.random() * 10 );
@@ -79,8 +83,8 @@ public class ReversiBoard {
             System.out.print( "   " + (char)('a' + i) );
         }
         System.out.println();
-        System.out.println( "   " + TABLE_LU 
-                                 + repeat( ( "" + repeat( TABLE_H, 3 ) + TABLE_UD ), size-1 ) 
+        System.out.println( "   " + TABLE_LU
+                                 + repeat( ( "" + repeat( TABLE_H, 3 ) + TABLE_UD ), size-1 )
                                  + repeat( TABLE_H, 3 ) + TABLE_RU );
         for ( int i = 1; i <= size; i++ ) {
             System.out.printf( "%2d %c", i, TABLE_V );
@@ -90,12 +94,12 @@ public class ReversiBoard {
             System.out.printf( " %d", i );
             System.out.println();
             if ( i < size ) {
-                System.out.println( "   " + TABLE_LR 
-                                         + repeat( ( "" + repeat( TABLE_H, 3 ) + TABLE_CROSS ), size-1 ) 
+                System.out.println( "   " + TABLE_LR
+                                         + repeat( ( "" + repeat( TABLE_H, 3 ) + TABLE_CROSS ), size-1 )
                                          + repeat( TABLE_H, 3 ) + TABLE_RL );
             } else {
-                System.out.println( "   " + TABLE_LD 
-                                         + repeat( ( "" + repeat( TABLE_H, 3 ) + TABLE_DU ), size-1 ) 
+                System.out.println( "   " + TABLE_LD
+                                         + repeat( ( "" + repeat( TABLE_H, 3 ) + TABLE_DU ), size-1 )
                                          + repeat( TABLE_H, 3 ) + TABLE_RD );
             }
         }
@@ -128,7 +132,7 @@ public class ReversiBoard {
      * @return true if the board is full
      */
     private boolean isBoardFull() {
-       
+
         return diskCountA+diskCountB == size*size;
     }
 
@@ -138,14 +142,14 @@ public class ReversiBoard {
     private void updateDiskCounts() {
         int x=0;
         int o=0;
-        
+
         for(int i=1;i<=size;i++) {
         	for(int j=1;j<=size;j++) {
         		if(board[i][j]==ReversiDiskType.X) {
         			x++;
         		}else {
         			o++;
-        			
+
         		}
         	}
         }
@@ -176,8 +180,8 @@ public class ReversiBoard {
         //check if the game is finished and update the winner
     	if(diskCountA==0||diskCountB==0||isBoardFull())
     		return true;
-    	
-    	
+
+
         return false;
     }
 
