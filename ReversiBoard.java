@@ -158,6 +158,10 @@ public class ReversiBoard {
         //      then check which player to go
         //      place the disk
         //      reverse disk if any
+    	
+    	
+    	
+    	
     }
 
     /**
@@ -167,7 +171,11 @@ public class ReversiBoard {
      * @return true if the game is over
      */
     public boolean isOver() {
-        //TODO: check if the game is finished and update the winner
+        //check if the game is finished and update the winner
+    	if(diskCountA==0||diskCountB==0||isBoardFull())
+    		return true;
+    	
+    	
         return false;
     }
 
