@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 /**
  * ReversiComputerPlayer
  */
@@ -9,22 +11,22 @@ public class ReversiComputerPlayer extends ReversiPlayer {
 
     public String getMove( ReversiBoard board, ReversiDiskType diskType ) {
         String move = null;
-        StringBuilder positionsList = new StringBuilder();
+        List<String> positionsList = new ArrayList<String>();
         String positionPointer = null;
         for(int x = 1; x <= board.getBoardSize(); x++){
         	for(int y = 1; y <= board.getBoardSize(); y++){
         		positionPointer = parseMove(x, y);
         		if(board.isValidPosition(positionPointer) && board.isFlipable(positionPointer, diskType)){
-        			positionsList.append(positionPointer);
+        			positionsList.add(positionPointer);
         		}
         	}
         }
-        int listSize = positionsList.length() / 2;
+        int listSize = positionsList.size();
         int chosenMove = (int)( Math.random() * listSize );
-        if(positionsList.length() == 0){
+        if(listSize == 0){
         	System.out.printf("%nComputer playing %s, didn't make move%n", ""+diskType);
         }else{
-        	move = positionsList.substring(0, 2);
+        	move = positionsList.get(chosenMove);
         	System.out.printf("%nComputer playing %s, made move at %s", ""+diskType, move);
         }
         return move;
