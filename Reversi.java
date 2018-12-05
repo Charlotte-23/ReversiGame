@@ -28,7 +28,11 @@ public class Reversi {
                     System.out.println( "Invalid move, try again" );
                 }
             }
-            System.out.println( "Game Over! " + board.winner().getName() + " wins!" );
+            if(board.getWinner() == null){
+              System.out.println("Game Over, draw!");
+            }else{
+              System.out.println( "Game Over! " + board.getWinner().getName() + " wins!" );
+            }
             System.out.print( "Play again? (y/n): " );
             String flag;
             while ( !(flag = keyboard.next()).equals( "y" ) && !flag.equals( "n" ) ) {

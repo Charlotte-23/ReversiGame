@@ -193,8 +193,14 @@ public class ReversiBoard {
     /**
      * @return the ReversiPlayer reference to the winner
      */
-    public ReversiPlayer winner() {
-        return winner;
+    public ReversiPlayer getWinner() {
+      if(diskCountA == diskCountB){
+        return null;
+      }else if(diskCountA > diskCountB){
+        return playerA;
+      }else{
+        return playerB;
+      }
     }
 
     /**
@@ -255,7 +261,7 @@ public class ReversiBoard {
     	}
     	return false;
     }
-    
+
     private void flip( String position, ReversiDiskType type ) {
     	int x = parseX(position);
     	int y = parseY(position);
