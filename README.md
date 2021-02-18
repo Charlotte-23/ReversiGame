@@ -1,2 +1,2 @@
-# cs11afall1803-team10
+# ReversiGame
     This is a Reversi game, run Reversi.java and have fun!
